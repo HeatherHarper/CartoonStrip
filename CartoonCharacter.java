@@ -33,7 +33,7 @@ public class CartoonCharacter {
     private int characterHeight = 100;
     private int characterWidth = 70;
 
-    private int wordsWidth = 150;
+    private int wordsWidth = 200;
     private int wordsHeight = 35;
 
     /** Constructor requires the coordinates (left, top) of where it should be placed,
@@ -102,7 +102,7 @@ public class CartoonCharacter {
         UI.drawRect(boxX, boxY, this.wordsWidth, this.wordsHeight);
         UI.drawString(words, boxX + 5, boxY + this.wordsHeight/2 + 3);
 
-        UI.sleep(1000);
+        UI.sleep(4000);
 
         UI.eraseRect(boxX, boxY, this.wordsWidth+1, this.wordsHeight+1);
     }
@@ -129,16 +129,28 @@ public class CartoonCharacter {
 
         UI.drawOval(circleX, circleY, 10, 10);
 
-        UI.sleep(1000);
+        UI.sleep(4000);
 
         UI.eraseRect(bubbleX, bubbleY, this.wordsWidth+1, this.wordsHeight+1);
         UI.eraseOval(circleX, circleY, 10, 10);
     }
 
+    /**
+     * Change position this character thinks it's at so walking isn't just horizontal
+     * does not draw character
+     * 
+     * @param xChange a double for the change in x
+     * @param yChange a double for the change in y
+     */
+    public void changePosition(double xChange, double yChange) {
+        this.characterX += xChange;
+        this.characterY += yChange;
+    }
+    
     /** Helper method that erases the CartoonCharacter 
      * All the public methods that change the character call erase first 
      */
-    private void erase() {
+    public void erase() {
         UI.eraseRect(this.characterX, this.characterY, this.characterWidth+1, this.characterHeight+1);
     }
 
@@ -146,12 +158,13 @@ public class CartoonCharacter {
      * All the public methods that change the character call draw.
      */
 
-    private void draw(){
+    public void draw(){
         String fname = null;
         fname = "img\\" + this.imagePrefix + "-" + this.direction + "-" + this.emotion + ".png"; 
         UI.drawImage(fname, this.characterX, this.characterY, this.characterWidth, this.characterHeight);
         UI.sleep(500);
     }
 
+    
 }
 

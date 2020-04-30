@@ -25,10 +25,48 @@ public class CartoonStrip{
      */
     public void tellStory(){
         /*# YOUR CODE HERE */
-        this.drawBoat();
-        CartoonCharacter casey = new CartoonCharacter(100, 100, "casey");
-        CartoonCharacter alice = new CartoonCharacter(300, 100, "alice");
+        //part 1
+        UI.drawImage("img\\part1backdrop.png", 0, 0, 500, 500);
+        CartoonCharacter casey = new CartoonCharacter(100, 170, "casey");
+        CartoonCharacter alice = new CartoonCharacter(300, 170, "alice");
+        alice.lookLeft();
+        UI.sleep(500);
+        alice.speak("Yay! we're on a boat");
         
+        //part 2        
+        UI.drawImage("img\\part2backdrop.png", 0, 0, 500, 500);
+        alice.draw();
+        casey.draw();
+        casey.frown();
+        casey.speak("is that a storm?");
+        alice.erase();
+        
+        //part 3
+        UI.drawImage("img\\part3backdrop.png", 0, 0, 500, 500);
+        casey.draw();
+        casey.speak("Ahhh!");
+        for (int i = 0; i<5; i++) {
+            casey.erase();
+            casey.changePosition(30, -40);
+            casey.draw();
+            UI.sleep(400);
+            casey.erase();
+            casey.changePosition(30, 40);
+            casey.draw();
+        }  
+        
+        //part 4
+        UI.drawImage("img\\part4backdrop.png", 0, 0, 500, 500);
+        casey.changePosition(-100, 150);
+        casey.lookLeft();
+        UI.sleep(500);
+        casey.lookRight();
+        UI.sleep(500);
+        casey.lookLeft();
+        casey.smile();
+        UI.sleep(1000);
+        casey.speak("hmm");
+        casey.speak("It appears I've been marrooned");
     }
 
     // methods to draw objects for story
@@ -40,7 +78,7 @@ public class CartoonStrip{
         UI.setColor(Color.blue);
         UI.fillArc(50, 150, 400, 100, 180, 180);
         UI.drawLine(425, 200, 425, 50);
-        UI.drawPolygon([425,425;550], [50;150;150], 3);
+        //UI.drawPolygon([425, 425, 550], [50, 150, 150], 3);
         
         //reset UI stuff for use in other classes
         //UI.setLineWidth(1);
